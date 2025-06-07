@@ -1,0 +1,20 @@
+{
+    "name": "max/max",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Max Rojas Huarcaya",
+            "email": "jmaxrh@gmail.com"
+        }
+    ],
+    "require": {
+        "setasign/fpdf": "^1.8",
+        "chillerlan/php-qrcode": "^5.0",
+        "tecnickcom/tcpdf": "^6.8",
+        "google/cloud-storage": "^1.47"
+    }
+}

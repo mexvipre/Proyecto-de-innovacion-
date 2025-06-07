@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Captura y Subida de Foto</title>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+
+
+    button {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+
+    input[type="file"],
+    input[type="text"] {
+      padding: 8px;
+      margin-top: 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    video {
+      width: 43%;
+      margin-top: 15px;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    #modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .modal-buttons button {
+      width: 48%;
+    }
+
+    #continuarContainer {
+      margin-top: 15px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+    <h2 style="margin: 0;">Tomar o Subir una Foto</h2>
+    <div style="display: flex; gap: 10px; align-items: center; margin-left: auto;">
+      <input type="file" id="archivoImagen" accept="image/*" style="width: 150px;">
+      <button id="activarCamara">Usar Cámara</button>
+      <button id="capturar" style="display:none;">Tomar Foto</button>
+    </div>
+  </div>
+  
+  
+
+  
+
+  <video id="video" autoplay style="display:none;"></video>
+  <canvas id="canvas" style="display: none;"></canvas>
+
+  <!-- MODAL -->
+  <div id="modal">
+    <div class="modal-content">
+      <h3>Previsualización</h3>
+      <img id="fotoModal" src="" alt="Foto" />
+      <input type="text" id="nombreImagen" placeholder="Nombre de la imagen" />
+      <div class="modal-buttons">
+        <button id="guardar">Guardar</button>
+        <button onclick="cerrarModal()">Volver a Tomar foto</button>
+      </div>
+      <div id="continuarContainer">
+        <!-- Este contenedor se manejará desde SweetAlert -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const context = canvas.getContext('2d');
+    const activarCamara = document.getElementById('activarCamara');
+    const capturar = document.getElementById('capturar');
+    const archivoImagen = document.getElementById('archivoImagen');
+    const fotoModal = document.getElementById('fotoModal');
+    const nombreImagen = document.getElementById('nombreImagen');
+    const modal = document.getElementById('modal');
+    const imagenBase64Input = document.createElement('input');
+    imagenBase64Input.type = 'hidden';
+    document.body.appendChild(imagenBase64Input);
+
+    function abrirModal(imagenBase64) {
+      fotoModal.src = imagenBase64;
+      imagenBase64Input.value = imagenBase64;
+      modal.style.display = 'flex';
+    }
+
+    function cerrarModal() {
+      modal.style.display = 'none';
+      nombreImagen.value = '';
+    }
+
+    activarCamara.addEventListener('click', () => {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          video.srcObject = stream;
+          video.style.display = 'block';
+          capturar.style.display = 'inline-block';
+        })
+        .catch(err => console.error("Error al acceder a la cámara:", err));
+    });
+
+    capturar.addEventListener('click', () => {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      context.drawImage(video, 0, 0, canvas.width, canvas.height);
+      const imagenBase64 = canvas.toDataURL("image/png");
+      abrirModal(imagenBase64);
+    });
+
+    archivoImagen.addEventListener('change', function () {
+      const archivo = this.files[0];
+      if (archivo) {
+        const lector = new FileReader();
+        lector.onload = function (e) {
+          abrirModal(e.target.result);
+        };
+        lector.readAsDataURL(archivo);
+      }
+    });
+
+    document.getElementById('guardar').addEventListener('click', function () {
+      const nombre = nombreImagen.value.trim();
+      const imagen = imagenBase64Input.value;
+
+      if (!nombre) {
+        alert("⚠️ Debes ingresar un nombre para la imagen.");
+        return;
+      }
+
+      if (!imagen) {
+        alert("⚠️ No hay imagen para guardar.");
+        return;
+      }
+
+      fetch('../imagenes/subir.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nombre_imagen: nombre, imagen: imagen })
+      })
+      .then(res => res.text())
+      .then(data => {
+        cerrarModal(); // Cerrar modal
+        Swal.fire({
+          title: '¡Operación completada!',
+          text: `✅ Imagen guardada como: ${nombre}`,
+          icon: 'success',
+          confirmButtonText: 'Continuar',
+          confirmButtonColor: '#00BF63',
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = '../dashboard/dashboard.php?view=detequipos';
+          }
+        });
+      })
+      .catch(err => console.error("Error al guardar imagen:", err));
+    });
+  </script>
+</body>
+</html>
