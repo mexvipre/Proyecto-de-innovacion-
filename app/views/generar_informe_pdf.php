@@ -140,7 +140,7 @@ $pdf->AddPage();
 $pdf->SetFont('Arial', '', 10);
 
 $pdf->SetFont('Arial', 'B', 12);
-$pdf->Cell(100, 7, 'INFORME TÉCNICO DEL EQUIPO', 0, 0, 'L');
+$pdf->Cell(100, 7, utf8_decode('INFORME TÉCNICO DEL EQUIPO'), 0, 0, 'L');
 $pdf->Cell(90, 7, utf8_decode('N° EQUIPO: ') . str_pad($equipo['iddetequipo'], 6, '0', STR_PAD_LEFT), 0, 1, 'R');
 $pdf->Ln(3);
 
@@ -194,7 +194,7 @@ $pdf->Ln(4);
 $pdf->SetFont('Arial', 'B', 9);
 $pdf->SetFillColor(2, 80, 95);
 $pdf->SetTextColor(255);
-$pdf->Cell(190, 7, 'SERVICIOS Y DIAGNÓSTICO', 1, 1, 'C', true);
+$pdf->Cell(190, 7,utf8_decode('SERVICIOS Y DIAGNÓSTICO'), 1, 1, 'C', true);
 $pdf->SetTextColor(0);
 $pdf->SetFont('Arial', '', 9);
 
@@ -215,7 +215,7 @@ if (!empty($equipo['imagenes_tecnicas'])) {
     $pdf->SetFont('Arial', 'B', 9);
     $pdf->SetFillColor(2, 80, 95);
     $pdf->SetTextColor(255);
-    $pdf->Cell(190, 7, 'EVIDENCIA TÉCNICA', 1, 1, 'C', true);
+    $pdf->Cell(190, 7,utf8_decode( 'EVIDENCIA TÉCNICA'), 1, 1, 'C', true);
     $pdf->SetTextColor(0);
     $pdf->SetFont('Arial', '', 9);
     $pdf->Ln(2);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-06-2025 a las 04:37:58
+-- Tiempo de generación: 12-06-2025 a las 22:01:21
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.1.25
 
@@ -1028,7 +1028,9 @@ INSERT INTO `caracteristicas` (`id_caracteristica`, `id_especificacion`, `valor`
 (66, 3, 'corei 5 6ta gnr 564654', 169),
 (67, 1, '4GB', 172),
 (68, 2, '500GB', 172),
-(69, 4, 'NEGRO', 174);
+(69, 4, 'NEGRO', 174),
+(70, 3, 'Corei DUO 2', 176),
+(71, 1, '2 GB', 176);
 
 -- --------------------------------------------------------
 
@@ -1120,7 +1122,9 @@ INSERT INTO `clientes` (`idcliente`, `idpersona`, `idempresa`) VALUES
 (88, NULL, 26),
 (89, NULL, 27),
 (90, 281, NULL),
-(91, NULL, 28);
+(91, NULL, 28),
+(92, 282, NULL),
+(93, 283, NULL);
 
 -- --------------------------------------------------------
 
@@ -1152,7 +1156,8 @@ INSERT INTO `contratos` (`idcontrato`, `idpersona`, `idrol`, `fecha_inicio`, `fe
 (17, 42, 2, '2025-05-22', '2025-05-30', 'practicante', '2025-05-22 15:11:44'),
 (18, 4, 3, '2025-05-29', '2025-05-31', 'practicante', '2025-05-28 15:34:52'),
 (19, 278, 3, '2025-05-29', '2025-05-31', 'practicante ', '2025-05-28 15:54:19'),
-(20, 279, 3, '2025-05-29', '2025-05-31', 'especialista en reparación de pc', '2025-05-29 16:29:24');
+(20, 279, 3, '2025-05-29', '2025-05-31', 'especialista en reparación de pc', '2025-05-29 16:29:24'),
+(21, 282, 3, '2025-06-11', '2025-12-17', 'ESPECIALISTA EN IMPRESORAS', '2025-06-11 14:46:03');
 
 -- --------------------------------------------------------
 
@@ -1201,7 +1206,8 @@ INSERT INTO `detalle_servicios` (`iddetservicio`, `iddetequipo`, `idusuario_sopo
 (27, 172, 19, 'laptop queda operativo para el uso', NULL, '2025-05-29 21:13:41', '2025-05-29 21:14:57'),
 (28, 173, 5, NULL, NULL, NULL, NULL),
 (29, 174, 19, 'se realizo el cambio de algunos componentes', NULL, '2025-06-06 11:04:45', '2025-06-06 11:17:51'),
-(30, 175, 5, NULL, NULL, NULL, NULL);
+(30, 175, 5, NULL, NULL, NULL, NULL),
+(31, 176, 20, 'QUEDA OPERATIVO EL EQUIPO', NULL, '2025-06-11 15:20:55', '2025-06-11 17:11:10');
 
 -- --------------------------------------------------------
 
@@ -1281,7 +1287,8 @@ INSERT INTO `detequipos` (`iddetequipo`, `idmarcasoc`, `modelo`, `numserie`, `co
 (172, 223, 'XD4', 'XASDASD54654', NULL, 'NO ENCIENDE', '2025-05-31 00:00:00', NULL, 127, 116),
 (173, 224, 'KTINKER500', 'XGSD56454XS', 'MATENIMIENTO\r\nREPARACIÓN DE DISIPADOR', 'NO ENCIENDE', '2025-06-13 00:00:00', NULL, NULL, 116),
 (174, 225, 'L200', 'XS574258', 'REVISIÓN DE CABEZAL\r\nMANTENIMIENTO GENERAL\r\n', 'IMPRIME CON RAYAS', '2025-06-10 00:00:00', NULL, 128, 117),
-(175, 226, 'GFA54', 'ASDAX65465', 'MANTENIMIENTO GENERAL', 'NO ENCIENDE', '2025-06-19 00:00:00', NULL, NULL, 118);
+(175, 226, 'GFA54', 'ASDAX65465', 'MANTENIMIENTO GENERAL', 'NO ENCIENDE', '2025-06-19 00:00:00', NULL, NULL, 118),
+(176, 227, 'E47335O300', 'LA00472277', 'SERVICIO A MIGRACION A WINDOWS XP A WINDOWS 7.\r\nCON PROBLAMAS BASICO \r\nANTIVIRUS AVAST LICENCIA PREMIU ', 'NO PUEDE APAGARSE', '2025-06-11 00:00:00', NULL, 131, 119);
 
 -- --------------------------------------------------------
 
@@ -1598,7 +1605,10 @@ INSERT INTO `evidencias_entrada` (`idEvidencia`, `ruta_Evidencia_Entrada`, `fech
 (125, 'https://storage.googleapis.com/evidencias_general/evidencia_entrada/pc_malogrado.jpeg', '2025-05-21 14:12:06'),
 (126, 'https://storage.googleapis.com/evidencias_general/evidencia_entrada/laptop_para_reparar.jpeg', '2025-05-21 14:47:30'),
 (127, 'https://storage.googleapis.com/evidencias_general/evidencia_entrada/LAPTOP_QUE_NO_ENCIENDE.jpeg', '2025-05-29 21:12:04'),
-(128, 'https://storage.googleapis.com/evidencias_general/evidencia_entrada/asdad.jpeg', '2025-06-06 11:22:56');
+(128, 'https://storage.googleapis.com/evidencias_general/evidencia_entrada/asdad.jpeg', '2025-06-06 11:22:56'),
+(129, 'https://storage.googleapis.com/evidencias_general/evidencia_entrada/pc_intel_no_se_puede_apagar.jpeg', '2025-06-11 15:33:49'),
+(130, 'https://storage.googleapis.com/evidencias_general/evidencia_entrada/ds.jpeg', '2025-06-11 15:36:47'),
+(131, 'https://storage.googleapis.com/evidencias_general/evidencia_entrada/asdas.jpeg', '2025-06-11 17:08:05');
 
 -- --------------------------------------------------------
 
@@ -1642,7 +1652,8 @@ INSERT INTO `evidencia_tecnica` (`idEvidencia_Tecnica`, `imagen_tecnico`, `comen
 (25, 'https://storage.googleapis.com/evidencias_general/evidencia_salida/mantenimiento.jpeg', NULL, 17),
 (26, 'https://storage.googleapis.com/evidencias_general/evidencia_salida/reparaci__n.jpeg', NULL, 14),
 (27, 'https://storage.googleapis.com/evidencias_general/evidencia_salida/instalaci__n_de_sistema_operativo_win_11.jpeg', NULL, 27),
-(28, 'https://storage.googleapis.com/evidencias_general/evidencia_salida/aletorio.jpeg', NULL, 29);
+(28, 'https://storage.googleapis.com/evidencias_general/evidencia_salida/aletorio.jpeg', NULL, 29),
+(29, 'https://storage.googleapis.com/evidencias_general/evidencia_salida/MANTENIMIENTO.jpeg', NULL, 31);
 
 -- --------------------------------------------------------
 
@@ -1910,7 +1921,8 @@ INSERT INTO `marcasasoc` (`idmarcasoc`, `id_marca`, `id_subcategoria`) VALUES
 (223, 3, 17),
 (224, 1, 7),
 (225, 7, 1),
-(226, 1, 8);
+(226, 1, 8),
+(227, 1, 7);
 
 -- --------------------------------------------------------
 
@@ -1933,28 +1945,14 @@ INSERT INTO `orden_de_servicios` (`idorden_Servicio`, `fecha_recepcion`, `idusua
 (71, '2025-04-09 22:19:33', 2, 43),
 (72, '2025-04-10 18:33:55', 2, 29),
 (73, '2025-04-11 08:48:44', 2, 57),
-(74, '2025-04-11 08:58:56', 2, 57),
-(75, '2025-04-11 09:14:10', 2, 57),
-(76, '2025-04-11 09:14:19', 2, 57),
-(77, '2025-04-11 09:14:34', 2, 57),
-(78, '2025-04-11 10:23:03', 2, 48),
-(79, '2025-04-11 10:28:24', 2, 57),
 (80, '2025-04-11 10:57:32', 2, 48),
-(81, '2025-04-18 12:25:22', 2, 1),
-(89, '2025-04-18 13:06:00', 1, 28),
-(90, '2025-04-18 13:06:00', 1, 28),
 (91, '2025-04-18 13:12:00', 1, 32),
-(92, '2025-04-18 13:36:00', 1, 11),
 (93, '2025-04-18 16:29:00', 2, 43),
-(94, '2025-05-12 15:14:00', 2, 43),
 (95, '2025-05-12 15:19:00', 2, 43),
 (96, '2025-05-14 15:01:00', 2, 43),
 (97, '2025-05-14 16:20:00', 2, 80),
 (98, '2025-05-14 17:03:00', 2, 83),
 (99, '2025-05-17 10:08:00', 2, 84),
-(102, '2025-05-21 13:54:00', 2, 43),
-(103, '2025-05-21 14:00:00', 2, 43),
-(104, '2025-05-21 14:00:00', 1, 43),
 (105, '2025-05-21 14:03:00', 2, 43),
 (106, '2025-05-21 14:06:00', 4, 43),
 (108, '2025-05-21 14:32:00', 4, 43),
@@ -1966,7 +1964,8 @@ INSERT INTO `orden_de_servicios` (`idorden_Servicio`, `fecha_recepcion`, `idusua
 (115, '2025-05-22 18:47:00', 2, 43),
 (116, '2025-05-29 21:09:00', 2, 87),
 (117, '2025-06-06 10:54:00', 4, 90),
-(118, '2025-06-06 12:34:00', 2, 91);
+(118, '2025-06-06 12:34:00', 2, 91),
+(119, '2025-06-11 15:04:00', 2, 93);
 
 -- --------------------------------------------------------
 
@@ -2058,7 +2057,9 @@ INSERT INTO `personas` (`idpersona`, `nombres`, `Primer_Apellido`, `Segundo_Apel
 (278, 'DIGGY TONY JESUS', 'FELIX', 'TIPACTI', '967356695', 'DNI', '70073736', 'Diggy@gmail.com', 'Cal. San Vicente Ferrer Nro. S/n (Alt. Cervec. Backus a 250 M. Capilla Svf)', '2025-05-28 15:53:46', NULL, 2, NULL, 1, 7),
 (279, 'JOSE MANUEL', 'HERNANDEZ', 'SARAVIA', '941895694', 'DNI', '72015783', '', 'Cal. San Vicente Ferrer Nro. S/n (Alt. Cervec. Backus a 250 M. Capilla Svf)', '2025-05-29 16:28:38', NULL, 2, NULL, 1, 10),
 (280, 'YENNY JACKELINE', 'SARAVIA', 'RAMOS', '928209520', 'DNI', '47308843', '', 'miguel grau mz g lt 10', '2025-05-29 21:09:32', NULL, 2, NULL, 1, 2),
-(281, 'VERONICA ZORAIDA', 'CHOQUEHUANCA', 'JUSCA', '966886635', 'DNI', '42965749', '', 'A.v Junin 520', '2025-06-06 10:53:49', NULL, 4, NULL, 1, 10);
+(281, 'VERONICA ZORAIDA', 'CHOQUEHUANCA', 'JUSCA', '966886635', 'DNI', '42965749', '', 'A.v Junin 520', '2025-06-06 10:53:49', NULL, 4, NULL, 1, 10),
+(282, 'FABRIZIO PAUL', 'YATACO', 'MARTINEZ', '925832334', 'DNI', '75187082', '', 'LOMO LARGO SUMANPE N|145', '2025-06-11 14:45:20', NULL, 2, NULL, 1, 7),
+(283, 'KAROL VANESSA', 'APARCANA', 'MENESES', '934887483', 'DNI', '42041031', '', 'CHABALINA', '2025-06-11 15:04:41', NULL, 2, NULL, 1, 1);
 
 --
 -- Disparadores `personas`
@@ -2128,7 +2129,8 @@ INSERT INTO `servicios` (`idservicio`, `nombre_servicio`, `precio_sugerido`, `id
 (49, 'MANTENIMIENTO PREVENTIVO', 40.00, 27),
 (50, 'FORMATEO  DE SISTEMA OPERATIVO A WINDOWNS 11', 40.00, 27),
 (51, 'MANTENIMIENTO', 40.00, 29),
-(52, 'REPARACION DE CABEZAL', 20.00, 29);
+(52, 'REPARACION DE CABEZAL', 20.00, 29),
+(53, 'MANTENIMIENTO PREVENTIVO', 40.00, 31);
 
 -- --------------------------------------------------------
 
@@ -2197,7 +2199,8 @@ INSERT INTO `usuarios` (`idusuario`, `idcontrato`, `namuser`, `passuser`, `estad
 (7, 9, 'andrea', 'andrea123', 1, '2025-05-17 20:04:00', 2),
 (17, 18, 'lucia', 'lucia123', 1, '2025-05-28 15:35:00', 2),
 (18, 19, 'diggy', 'diggy', 1, '2025-05-28 15:54:00', 18),
-(19, 20, 'josemanuel', '1234', 1, '2025-05-29 16:29:00', 19);
+(19, 20, 'josemanuel', '1234', 1, '2025-05-29 16:29:00', 19),
+(20, 21, 'FABRIZIO', 'FABRIZIO123', 1, '2025-06-11 14:46:00', 2);
 
 --
 -- Índices para tablas volcadas
@@ -2363,7 +2366,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `caracteristicas`
 --
 ALTER TABLE `caracteristicas`
-  MODIFY `id_caracteristica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id_caracteristica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -2375,25 +2378,25 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `idcliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT de la tabla `contratos`
 --
 ALTER TABLE `contratos`
-  MODIFY `idcontrato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idcontrato` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_servicios`
 --
 ALTER TABLE `detalle_servicios`
-  MODIFY `iddetservicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `iddetservicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `detequipos`
 --
 ALTER TABLE `detequipos`
-  MODIFY `iddetequipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=176;
+  MODIFY `iddetequipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=177;
 
 --
 -- AUTO_INCREMENT de la tabla `distritos`
@@ -2429,13 +2432,13 @@ ALTER TABLE `especificaciones`
 -- AUTO_INCREMENT de la tabla `evidencias_entrada`
 --
 ALTER TABLE `evidencias_entrada`
-  MODIFY `idEvidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+  MODIFY `idEvidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 
 --
 -- AUTO_INCREMENT de la tabla `evidencia_tecnica`
 --
 ALTER TABLE `evidencia_tecnica`
-  MODIFY `idEvidencia_Tecnica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `idEvidencia_Tecnica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `marcas`
@@ -2447,19 +2450,19 @@ ALTER TABLE `marcas`
 -- AUTO_INCREMENT de la tabla `marcasasoc`
 --
 ALTER TABLE `marcasasoc`
-  MODIFY `idmarcasoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=227;
+  MODIFY `idmarcasoc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=228;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_de_servicios`
 --
 ALTER TABLE `orden_de_servicios`
-  MODIFY `idorden_Servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=119;
+  MODIFY `idorden_Servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=120;
 
 --
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=282;
+  MODIFY `idpersona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=284;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -2471,7 +2474,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `idservicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `idservicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `subcategoria`
@@ -2483,7 +2486,7 @@ ALTER TABLE `subcategoria`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restricciones para tablas volcadas
